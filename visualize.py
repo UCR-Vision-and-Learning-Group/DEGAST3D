@@ -37,20 +37,38 @@ def visualize_and_save(seg0, seg1, label0, label1, seg0_out, seg1_out):
     
     print(f"Saved colored segmentation maps: {seg0_out}, {seg1_out}")
 
+
+
+def COLORIZE_SEG_MAP(seg):
+
+
+    label = np.unique(seg)[1:]
+    color_dict = generate_random_colors(len(label))
+    colored_seg = colorize_segmentation(seg, label, color_dict)
+
+    return colored_seg
+
+
 if __name__ == "__main__":
     # Example usage
 
-    # Load segmentation maps
     seg0 = tiff.imread('/home/eegrad/mdislam/SAM/Biusque_Upload/upload_version/DEGAST3D/data/test_plant/cellpose/seg/00hrs_plant15_trim-acylYFP.tif_mask.tif')
-    seg1 = tiff.imread('/home/eegrad/mdislam/SAM/Biusque_Upload/upload_version/DEGAST3D/data/test_plant/cellpose/seg/04hrs_plant15_trim-acylYFP.tif_mask.tif')
-    pairs0 = np.load('/home/eegrad/mdislam/SAM/Biusque_Upload/upload_version/DEGAST3D/results/cellpose_test_plant/all_tracks_stack_00hrs_plant15_trim-acylYFP.tif_mask.tif_04hrs_plant15_trim-acylYFP.tif_mask.tif.npy')
-    
-    # pdb.set_trace()
-    label0 = pairs0[:,0]
-    label1 = pairs0[:,1]
+    color_seg0 = COLORIZE_SEG_MAP(seg0)
+    tiff.imwrite('colored.tif',color_seg0)
 
-    visualize_and_save(
-        seg0, seg1,  
-        label0, label1,  # Example corresponding labels
-        seg0_out='seg0_out.tif', seg1_out='seg1_out.tif'
-    )
+
+
+    # # Load segmentation maps
+    # seg0 = tiff.imread('/home/eegrad/mdislam/SAM/Biusque_Upload/upload_version/DEGAST3D/data/test_plant/cellpose/seg/00hrs_plant15_trim-acylYFP.tif_mask.tif')
+    # seg1 = tiff.imread('/home/eegrad/mdislam/SAM/Biusque_Upload/upload_version/DEGAST3D/data/test_plant/cellpose/seg/04hrs_plant15_trim-acylYFP.tif_mask.tif')
+    # pairs0 = np.load('/home/eegrad/mdislam/SAM/Biusque_Upload/upload_version/DEGAST3D/results/cellpose_test_plant/all_tracks_stack_00hrs_plant15_trim-acylYFP.tif_mask.tif_04hrs_plant15_trim-acylYFP.tif_mask.tif.npy')
+    
+    # # pdb.set_trace()
+    # label0 = pairs0[:,0]
+    # label1 = pairs0[:,1]
+
+    # visualize_and_save(
+    #     seg0, seg1,  
+    #     label0, label1,  # Example corresponding labels
+    #     seg0_out='seg0_out.tif', seg1_out='seg1_out.tif'
+    # )
