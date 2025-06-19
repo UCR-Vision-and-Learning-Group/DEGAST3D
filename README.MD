@@ -1,4 +1,4 @@
-# Implemnetation of **DEGAST3D: Learning Deformable 3D Graph Similarity to Track Plant Cells in Unregistered Time Lapse Images (https://ieeexplore.ieee.org/document/10820545)**
+# Implementation of **DEGAST3D: Learning Deformable 3D Graph Similarity to Track Plant Cells in Unregistered Time Lapse Images (https://ieeexplore.ieee.org/document/10820545)**
 # **3D Plant Cell Segmentation, Tracking, and Cell Division Detection**
 
 ## **Overview**
